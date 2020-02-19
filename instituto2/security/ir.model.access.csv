@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+practicas_coordinador_access_alumno,Practicas-Coordinador,model_instituto_alumno,,1,1,1,1
+practicas_coordinador_access_instituto,Practicas-Coordinador,model_instituto_empresa,,1,1,1,1
+practicas_profesor_access,Practicas-Profesor,model_instituto_alumno,,1,0,0,0
+practicas_profesor_access,Practicas-Profesor,model_instituto_empresa,,1,0,0,0

@@ -1,0 +1,141 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="instituto.alumno_tree">
+      <field name="name">instituto.alumno.tree</field>
+      <field name="model">instituto.alumno</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="apellido"/>
+          <field name="fechaNac"/>
+          <field name="cursoAcademico"/>
+          <field name="correoElectronico"/>
+          <field name="telefono"/>
+          <field name="cicloFormativo"/>
+          <field name="periodoPractica"/>
+          <field name="notaMedia"/>
+          <field name="notaMediaTxt"/>
+          <field name="empresa"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="instituto.alumno_search_view">
+      <field name="name">instituto.alumno.search</field>
+      <field name="model">instituto.alumno</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="apellido" string="Apellido"/>
+          <field name="empresa" string="Empresa"/>
+          <field name="cursoAcademico" string="Curso Academico"/>
+          <filter name="Sobresalientes" domain="[('notaMedia','>', 8)]"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="instituto.empresa_tree">
+      <field name="name">instituto.empresa.tree</field>
+      <field name="model">instituto.empresa</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="personaContacto"/>
+          <field name="telefonoContacto"/>
+          <field name="correoElctronico"/>
+          <field name="direccion"/>
+          <field name="alumnos"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="instituto.alumno_form">
+      <field name="name">instituto.alumno.form</field>
+      <field name="model">instituto.alumno</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="name"/>
+            <field name="apellido"/>
+            <field name="fechaNac"/>
+            <field name="cursoAcademico"/>
+            <field name="correoElectronico"/>
+            <field name="telefono"/>
+            <field name="cicloFormativo"/>
+            <field name="periodoPractica"/>
+            <field name="notaMedia"/>
+            <field name="notaMediaTxt"/>
+            <field name="empresa"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="instituto.empresa_form">
+      <field name="name">instituto.empresa.form</field>
+      <field name="model">instituto.empresa</field>
+      <field name="arch" type="xml">
+        <form>
+          <group colspan="2" col="2">
+            <field name="name"/>
+            <field name="personaContacto"/>
+            <field name="telefonoContacto"/>
+            <field name="correoElctronico"/>
+            <field name="direccion"/>
+            <field name="alumnos">
+              <tree>
+                <field name="name"/>
+                <field name="apellido"/>
+                <field name="cursoAcademico"/>
+                <field name="periodoPractica"/>
+              </tree>
+            </field>
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="instituto.alumno_action_window">
+      <field name="name">instituto.alumno.action_window</field>
+      <field name="res_model">instituto.alumno</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="instituto.empresa_action_window">
+      <field name="name">instituto.empresa.action_window</field>
+      <field name="res_model">instituto.empresa</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="instituto.action_server">
+      <field name="name">instituto server</field>
+      <field name="model_id" ref="model_instituto_instituto"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <menuitem name="Instituto" id="instituto.menu_root" groups="practicas_coordinador,practicas_profesor"/>
+
+    <menuitem name="Instituto.alumno" id="instituto.alumno_menu" parent="instituto.menu_root" action="instituto.alumno_action_window" />
+    <menuitem name="Instituto.empresa" id="instituto.empresa_menu" parent="instituto.menu_root" action="instituto.empresa_action_window"/>
+
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="instituto.menu_1_list" parent="instituto.menu_1"
+              action="instituto.action_window"/>
+    <menuitem name="Server to list" id="instituto" parent="instituto.menu_2"
+              action="instituto.action_server"/>
+    -->
+  </data>
+</odoo>
